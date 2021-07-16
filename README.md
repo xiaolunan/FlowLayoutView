@@ -46,7 +46,7 @@ allprojects {
 
 ```
 dependencies {
-	implementation 'com.github.xiaolunan:FlowLayoutView:1.0'
+	implementation 'com.github.xiaolunan:FlowLayoutView:v1.1'
 }
 ```
 #### 布局中引用
