@@ -11,6 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:textColor="@color/purple_700"/>
+        app:textColor="#888585"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
