@@ -1,2 +1,3 @@
 rootProject.name = "FlowLayoutView"
 include ':app'
+include ':FlowLayout'

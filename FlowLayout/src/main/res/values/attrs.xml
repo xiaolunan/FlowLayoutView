@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FlowLayout">
+        <!--最大的行数-->
+        <attr name="maxLines" format="integer" />
+        <!--item左右间距水平方向-->
+        <attr name="itemHorizontalMargin" format="dimension" />
+        <!--item上下间距垂直方向-->
+        <attr name="itemVerticalMargin" format="dimension" />
+        <!--最大文字数量-->
+        <attr name="textMaxLength" format="integer" />
+        <!--字体颜色-->
+        <attr name="textColor" format="color|reference" />
+        <!--item边框颜色-->
+        <attr name="borderColor" format="color|reference" />
+        <!--item边框圆角度-->
+        <attr name="borderRadius" format="dimension" />
+    </declare-styleable>
+</resources>
