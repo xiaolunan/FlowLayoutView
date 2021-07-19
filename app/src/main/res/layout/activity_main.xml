@@ -10,7 +10,10 @@
         android:id="@+id/mFlowLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:bgShape="@drawable/text_bg_normal"
         app:layout_constraintTop_toTopOf="parent"
-        app:textColor="#888585"/>
+        app:selectedBgShape="@drawable/text_bg_press"
+        app:selectedTextColor="#ffffff"
+        app:textColor="#888585" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

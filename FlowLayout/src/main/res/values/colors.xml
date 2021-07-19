@@ -2,4 +2,5 @@
 <resources>
     <color name="text_grey">#888585</color>
     <color name="text_grey_press">#99888585</color>
+    <color name="text_white">#ffffff</color>
 </resources>

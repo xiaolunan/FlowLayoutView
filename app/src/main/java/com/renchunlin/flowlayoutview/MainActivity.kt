@@ -1,5 +1,6 @@
 package com.renchunlin.flowlayoutview
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -21,23 +22,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun initView() {
 
+        //数据源
         val list = mutableListOf(
-            Item("1月", false),
-            Item("2月", false),
-            Item("3月", false),
-            Item("4月", false),
-            Item("个人个人我个人哥哥违规而改为如果微软歌热舞Greg我隔热隔热我为退热贴各位热舞挺好", false),
-            Item("6月", false),
-            Item("7月", false),
-            Item("8月", false),
-            Item("9月", false),
-            Item("10月", false),
-            Item("11月", false),
-            Item("12月", false)
+            "1月",
+            "2月",
+            "3月",
+            "4月",
+            "个人个规而改为如果微软歌热舞Greg我隔热隔热我为退热贴各位热舞挺好",
+            "6月",
+            "7月",
+            "8月",
+            "9月",
+            "10月",
+            "11月",
+            "12月"
         )
 
+        //设置文字颜色在设置数据之前
+        binding.mFlowLayout.textColor = Color.BLACK
+        //设置数据源
         binding.mFlowLayout.textList(list)
-
+        //设置点击事件的回调
         binding.mFlowLayout.setItemClickListener(object : FlowLayout.ItemClickListener {
             override fun itemClick(v: View, content: String) {
                 Log.i("chen", "itemClick: $content")

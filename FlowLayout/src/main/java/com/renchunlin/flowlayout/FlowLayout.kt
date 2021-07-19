@@ -30,12 +30,13 @@ class FlowLayout : ViewGroup {
 
     private var mData: MutableList<Item>
     var maxLine: Int = 0
-    private var horizontalMargin: Int = 0
-    private var verticalMargin: Int = 0
-    private var textMaxLength: Int = 0
-    private var textColor: Int = 0
-    private var borderColor: Int = 0
-    private var borderRadius: Float = 0f
+    var horizontalMargin: Int = 0
+    var verticalMargin: Int = 0
+    var textMaxLength: Int = 0
+    var textColor: Int = 0
+    var selectedTextColor: Int = 0
+    var selectedBgShape: Int = 0
+    var bgShape: Int = 0
     private lateinit var itemClickListener: ItemClickListener
 
     constructor(context: Context) : this(context, null)
@@ -69,15 +70,22 @@ class FlowLayout : ViewGroup {
             R.styleable.FlowLayout_textColor,
             ContextCompat.getColor(context, R.color.text_grey)
         )
-        borderColor = typeArray.getColor(
-            R.styleable.FlowLayout_borderColor,
-            ContextCompat.getColor(context, R.color.text_grey)
+        selectedTextColor = typeArray.getColor(
+            R.styleable.FlowLayout_selectedTextColor,
+            ContextCompat.getColor(context, R.color.text_white)
         )
-        borderRadius =
-            typeArray.getDimension(
-                R.styleable.FlowLayout_borderRadius,
-                SizeUtils.dip2px(DEFAULT_BORDER_RADIUS)
-            )
+
+        //选中shape
+        selectedBgShape = typeArray.getResourceId(
+            R.styleable.FlowLayout_selectedBgShape,
+            R.drawable.shape_flow_text_bg_press
+        )
+
+        //未选中shape
+        bgShape = typeArray.getResourceId(
+            R.styleable.FlowLayout_bgShape,
+            R.drawable.shape_flow_text_bg_normal
+        )
         typeArray.recycle()
         mData = arrayListOf()
     }
@@ -110,9 +118,11 @@ class FlowLayout : ViewGroup {
         }
     }
 
-    fun textList(data: List<Item>) {
+    fun textList(data: List<String>) {
         mData.clear()
-        mData.addAll(data)
+        for (datum in data) {
+            mData.add(Item(datum, false))
+        }
         //根据布局创建子View，并且添加进来
         setUpChildren()
     }
@@ -132,12 +142,13 @@ class FlowLayout : ViewGroup {
             }
             text.text = mData[i].content
             //设置TextView的相关属性：边距，颜色，border之类...
-            text.setTextColor(textColor)
             //Log.i(TAG, "setUpChildren: ${mData[i]}")
             if (mData[i].isSelected) {
-                text.setBackgroundResource(R.drawable.shape_flow_text_bg_press)
+                text.setBackgroundResource(selectedBgShape)
+                text.setTextColor(selectedTextColor)
             } else {
-                text.setBackgroundResource(R.drawable.shape_flow_text_bg_normal)
+                text.setBackgroundResource(bgShape)
+                text.setTextColor(textColor)
             }
             text.setOnClickListener {
                 this.itemClickListener.itemClick(it, mData[i].content)
