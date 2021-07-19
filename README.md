@@ -20,12 +20,14 @@ kotlin版自定义流式布局，自定义ViewGroup，自动换行热门搜索�
         <attr name="itemVerticalMargin" format="dimension" />
         <!--最大文字数量-->
         <attr name="textMaxLength" format="integer" />
-        <!--字体颜色-->
+        <!--默认字体颜色-->
         <attr name="textColor" format="color|reference" />
-        <!--item边框颜色-->
-        <attr name="borderColor" format="color|reference" />
-        <!--item边框圆角度-->
-        <attr name="borderRadius" format="dimension" />
+        <!--选中字体颜色-->
+        <attr name="selectedTextColor" format="color|reference" />
+        <!--设置选中的shape 背景色 边框色 圆角大小-->
+        <attr name="selectedBgShape" format="reference" />
+        <!--设置未选中的shape 背景色 边框色 圆角大小-->
+        <attr name="bgShape" format="reference" />
     </declare-styleable>
 </resources>
 ```
@@ -46,16 +48,32 @@ allprojects {
 
 ```
 dependencies {
-	implementation 'com.github.xiaolunan:FlowLayoutView:v1.1'
+	implementation 'com.github.xiaolunan:FlowLayoutView:1.2'
 }
 ```
 #### 布局中引用
 
 ```
         <com.renchunlin.flowlayout.FlowLayout
-            android:id="@+id/mFlowLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:textColor="#888585"/>
+        android:id="@+id/mFlowLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bgShape="@drawable/text_bg_normal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectedBgShape="@drawable/text_bg_press"
+        app:selectedTextColor="#ffffff"
+        app:textColor="#888585" />
+```
+#### 代码中使用
+```
+        //设置文字颜色在设置数据之前
+        binding.mFlowLayout.textColor = Color.BLACK
+        //设置数据源
+        binding.mFlowLayout.textList(list)
+        //设置点击事件的回调
+        binding.mFlowLayout.setItemClickListener(object : FlowLayout.ItemClickListener {
+            override fun itemClick(v: View, content: String) {
+                Log.i("chen", "itemClick: $content")
+            }
+        })
 ```
