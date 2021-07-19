@@ -42,11 +42,11 @@ class MainActivity : AppCompatActivity() {
         binding.mFlowLayout.textColor = Color.BLACK
         //设置数据源
         binding.mFlowLayout.textList(list)
-        //设置点击事件的回调
+        /*//设置点击事件的回调
         binding.mFlowLayout.setItemClickListener(object : FlowLayout.ItemClickListener {
             override fun itemClick(v: View, content: String) {
                 Log.i("chen", "itemClick: $content")
             }
-        })
+        })*/
     }
 }

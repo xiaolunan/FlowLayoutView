@@ -151,7 +151,9 @@ class FlowLayout : ViewGroup {
                 text.setTextColor(textColor)
             }
             text.setOnClickListener {
-                this.itemClickListener.itemClick(it, mData[i].content)
+                if (::itemClickListener.isInitialized) {
+                    this.itemClickListener.itemClick(it, mData[i].content)
+                }
                 for (mDatum in mData) {
                     mDatum.isSelected = mDatum.content == mData[i].content
                 }
